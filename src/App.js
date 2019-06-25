@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+
+import SearchPage from './Pages/SearchPage'
+import NavBar from './Components/NavBar'
+
+const HomePage = () => <div>Hello World!</div>
+const NotFound = () => <div>404 Error!</div>
+
+class App extends React.Component {
+  render(){
+    return(
+      <div>
+        <BrowserRouter>
+          <Route path='/' component={NavBar} />          
+          <Switch>
+            <Route exact path='/' component={ HomePage }/>
+            <Route path='/search' component={ SearchPage }/>
+            <Route component={ NotFound } />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
 export default App;
